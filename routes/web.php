@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StaticController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[StaticController::class, 'index'] )-> name('home.index');
+
+Route::get('/about', [StaticController::class, 'about'])-> name('home.about');
+
+Route::get('/contact', [StaticController::class, 'contact'])-> name('home.contact');
+
+
+
+// Route::get('/store/{category?}/{item?}', function ($category = null, $item = null) {
+
+//     if ($category && $item) {
+//         // return view('/store', ['category' => $category, 'item' => $item]);
+//         return "<h1>Category: $category, Item: $item</h1>";
+//     } elseif ($category) {   
+//         // return view('/store', ['category' => $category]);
+//         return "<h1>Category: $category</h1>";
+//     } else {
+//         // return view('/store');
+//         return "<h1>Store</h1>";
+//     }
+// });

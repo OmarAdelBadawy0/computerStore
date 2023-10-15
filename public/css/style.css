@@ -1,0 +1,10 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    
+    .big{
+        font-size: 30px;
+    }
+}
+nav a {
+    margin-right: 10px;
+}
