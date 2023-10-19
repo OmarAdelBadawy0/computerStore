@@ -98,8 +98,12 @@ class ComputersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $computer)
     {
-        //
+        $deleted = computer::findOrFail($computer);
+
+        $deleted->delete();
+
+        return redirect() -> route('computers.index');
     }
 }

@@ -15,5 +15,13 @@
     </div>
 
     <a class="edit-btn" href="{{route('computers.edit', $computer->id )}}">Edit</a>
+
+    <form class="delete-form" action="{{route('computers.destroy', $computer->id )}}" method="post">
+        @csrf
+        @method('DELETE')
+        <input class="delete-btn" type="submit" value="delete">
+    </form>
+
+
 </div>
 @endsection
