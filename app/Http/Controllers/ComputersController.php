@@ -11,11 +11,11 @@ class ComputersController extends Controller
      */
     private static function getData(){
         return [
-            ['id' => 1, 'name' => 'LG', 'origin' => 'Koria'],
-            ['id' => 2, 'name' => 'HP', 'origin' => 'USA'],
-            ['id' => 3, 'name' => 'Dell', 'origin' => 'China'],
-            ['id' => 4, 'name' => 'Asus', 'origin' => 'Taiwan'],
-            ['id' => 5, 'name' => 'Acer', 'origin' => 'Taiwan'],
+            ['id' => 1, 'name' => 'LG', 'origin' => 'Koria', 'price' => 1000],
+            ['id' => 2, 'name' => 'HP', 'origin' => 'USA', 'price' => 2000],
+            ['id' => 3, 'name' => 'Dell', 'origin' => 'China', 'price' => 3000],
+            ['id' => 4, 'name' => 'Asus', 'origin' => 'Taiwan', 'price' => 4000],
+            ['id' => 5, 'name' => 'Acer', 'origin' => 'Taiwan', 'price' => 5000],
         ];
     }
 
@@ -29,7 +29,7 @@ class ComputersController extends Controller
      */
     public function create()
     {
-        //
+        return view('computers/create');
     }
 
     /**
