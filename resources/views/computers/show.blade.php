@@ -10,9 +10,10 @@
 
     <div class="mt-16"> 
             <h3>
-                {{ $computer['name'] }} is from {{ $computer['origin'] }}<strong> price = {{ $computer['price'] }}</strong>
+                {{ $computer['name'] }} is from {{ $computer['origin'] }}<strong> price = {{ $computer['price'] }}$</strong>
             </h3>
-            
     </div>
+
+    <a class="edit-btn" href="{{route('computers.edit', $computer->id )}}">Edit</a>
 </div>
 @endsection

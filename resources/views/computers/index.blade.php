@@ -14,7 +14,7 @@
                 @foreach ($computers as $computer)
                 <a href="{{route('computers.show', ['computer' => $computer['id']]) }}"> 
                     <li>
-                        <p> {{ $computer['name'] }} is from {{ $computer['origin'] }}<strong> Price = {{ $computer['price'] }}</strong> </p>
+                        <p> {{ $computer['name'] }} is from {{ $computer['origin'] }}<strong> Price = {{ $computer['price'] }}$</strong> </p>
                     </li> 
                 </a>
                 @endforeach

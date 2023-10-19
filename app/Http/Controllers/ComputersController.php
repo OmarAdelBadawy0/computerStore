@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Computer;
 
 class ComputersController extends Controller
 {
@@ -21,7 +22,7 @@ class ComputersController extends Controller
 
     public function index()
     {
-        return view('computers/index', ['computers' => self::getData()]);
+        return view('computers/index', ['computers' => computer::all()]);
     }
 
     /**
@@ -37,7 +38,21 @@ class ComputersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $computer = new Computer();
+
+        $request->validate([
+            'computer-name' => 'required',
+            'computer-origin' => 'required',
+            'computer-price' => 'required|integer'
+        ]);
+
+        $computer->name = strip_tags($request->input('computer-name'));
+        $computer->origin = strip_tags($request->input('computer-origin'));
+        $computer->price = strip_tags($request->input('computer-price'));
+
+        $computer->save();
+
+        return redirect() -> route('computers.index');
     }
 
     /**
@@ -45,29 +60,39 @@ class ComputersController extends Controller
      */
     public function show(string $computer)
     {
-        $computers = self::getData();
-        $index = array_search($computer, array_column($computers, 'id'));
-        if ($index === false) {
-            abort(404);
-        }else{
-            return view('computers/show', ['computer' => $computers[$index]]);
-        }
+        $index = computer::findOrFail($computer);
+        
+            return view('computers/show', ['computer' => $index]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $computer)
     {
-        //
+        return view('computers/edit', ['computer' => computer::findOrFail($computer)]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $computer)
     {
-        //
+        $request->validate([
+            'computer-name' => 'required',
+            'computer-origin' => 'required',
+            'computer-price' => 'required|integer'
+        ]);
+
+        $updated = computer::findOrFail($computer);
+
+        $updated->name = strip_tags($request->input('computer-name'));
+        $updated->origin = strip_tags($request->input('computer-origin'));
+        $updated->price = strip_tags($request->input('computer-price'));
+
+        $updated->save();
+
+        return redirect() -> route('computers.show', $computer);
     }
 
     /**
